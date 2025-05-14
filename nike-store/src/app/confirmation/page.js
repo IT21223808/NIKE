@@ -1,12 +1,14 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
+import React from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+
+export const dynamic = 'force-dynamic';
 
 export default function ConfirmationPage() {
   const searchParams = useSearchParams();
-  const orderId = searchParams.get("orderId");
+  const orderId = searchParams.get('orderId');
   const router = useRouter();
 
   const handleProceedToDelivery = () => {
@@ -18,7 +20,7 @@ export default function ConfirmationPage() {
       <div className="bg-white p-6 rounded-lg shadow-md text-center">
         <h1 className="text-3xl font-semibold text-gray-700 mb-4">Order Confirmation</h1>
         <p className="text-gray-500 mb-4">
-          Thank you for your order! Your order ID is <strong>{orderId}</strong>.
+          Thank you for your order! Your order ID is <strong>{orderId || 'Not provided'}</strong>.
         </p>
         <p className="text-gray-500 mb-4">You will receive a confirmation email shortly.</p>
         <button
