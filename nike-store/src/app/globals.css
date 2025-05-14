@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-roboto-mono: 'Roboto Mono', monospace;
+}
+
+body {
+  font-family: var(--font-inter);
+}
+
+/* Use Roboto Mono for specific elements */
+.mono {
+  font-family: var(--font-roboto-mono);
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
