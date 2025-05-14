@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCart } from "../context/CartContext";
 
+export const dynamic = 'force-dynamic';
+
 export default function DeliveryPage() {
   const router = useRouter();
   const searchParams = useSearchParams();

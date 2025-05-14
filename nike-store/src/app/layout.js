@@ -3,6 +3,7 @@ import './globals.css';
 import { CartProvider } from './context/CartContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Suspense } from 'react'; // Import Suspense
 
 const inter = Inter({
   variable: '--font-inter',
@@ -26,7 +27,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
         <CartProvider>
-          {children}
+          <Suspense fallback={<div>Loading...</div>}>
+            {children}
+          </Suspense>
           <ToastContainer
             position="top-center"
             autoClose={3000}

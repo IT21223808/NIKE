@@ -16,13 +16,41 @@ export default function CheckoutPage() {
     expiryDate: "",
     cvv: "",
   });
+  const [cardNumberDisplay, setCardNumberDisplay] = useState(""); // For masked display
+  const [error, setError] = useState(""); // For validation errors
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    if (name === "cardNumber") {
+      // Allow only numeric input and limit to 16 digits
+      const numericValue = value.replace(/\D/g, "").slice(0, 16);
+      setFormData((prev) => ({ ...prev, cardNumber: numericValue }));
+
+      // Create masked display (e.g., **** **** **** 1234)
+      const masked = numericValue
+        .padEnd(16, " ")
+        .replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, "**** **** **** $4")
+        .trim();
+      setCardNumberDisplay(masked);
+
+      // Validate length
+      if (numericValue.length !== 16 && numericValue.length > 0) {
+        setError("Card number must be exactly 16 digits");
+      } else {
+        setError("");
+      }
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (formData.paymentMethod === "credit-card" && formData.cardNumber.length !== 16) {
+      setError("Please enter a valid 16-digit card number");
+      return;
+    }
     router.push(`/confirmation?orderId=${Date.now()}`);
   };
 
@@ -107,11 +135,13 @@ export default function CheckoutPage() {
               type="text"
               name="cardNumber"
               placeholder="Card Number"
-              value={formData.cardNumber}
+              value={cardNumberDisplay}
               onChange={handleChange}
-              className="w-full p-2 mb-2 border rounded"
+              className={`w-full p-2 mb-2 border rounded ${error ? "border-red-500" : ""}`}
+              maxLength={19} // Accounts for spaces in masked format
               required
             />
+            {error && <p className="text-red-500 text-sm">{error}</p>}
             <input
               type="text"
               name="expiryDate"
@@ -128,6 +158,7 @@ export default function CheckoutPage() {
               value={formData.cvv}
               onChange={handleChange}
               className="w-full p-2 border rounded"
+              maxLength={3}
               required
             />
           </div>
