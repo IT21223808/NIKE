@@ -16,18 +16,17 @@ export default function Footer() {
           </div>
 
           {/* Right Side: Existing Content */}
-          <div className="md:w-1/2">
-            {/* Quick Links */}
-            <div className="mb-8">
-              <ul className="flex justify-center md:justify-end space-x-8">
-                <li><a href="/about" className="text-sm hover:text-yellow-400">About Us</a></li>
-                <li><a href="/contact" className="text-sm hover:text-yellow-400">Contact</a></li>
-                <li><a href="/faq" className="text-sm hover:text-yellow-400">FAQ</a></li>
-                <li><a href="/terms" className="text-sm hover:text-yellow-400">Terms of Use</a></li>
-                <li><a href="/privacy" className="text-sm hover:text-yellow-400">Privacy Policy</a></li>
-              </ul>
-            </div>
-
+<div className="md:w-1/2">
+  {/* Quick Links */}
+  <div className="mb-8">
+    <ul className="flex flex-col md:flex-row items-center md:justify-end space-y-3 md:space-y-0 md:space-x-8">
+      <li><a href="/about" className="text-sm hover:text-yellow-400">About Us</a></li>
+      <li><a href="/contact" className="text-sm hover:text-yellow-400">Contact</a></li>
+      <li><a href="/faq" className="text-sm hover:text-yellow-400">FAQ</a></li>
+      <li><a href="/terms" className="text-sm hover:text-yellow-400">Terms of Use</a></li>
+      <li><a href="/privacy" className="text-sm hover:text-yellow-400">Privacy Policy</a></li>
+    </ul>
+  </div>
             {/* Social Media Icons */}
             <div className="mb-8 text-center md:text-right">
               <p className="text-sm mb-4">Follow us:</p>

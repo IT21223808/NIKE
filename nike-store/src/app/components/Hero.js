@@ -122,25 +122,25 @@ const AnimatedParagraph = ({ text, variants, className }) => {
 export default function Hero() {
   return (
     <motion.section
-      className="relative pt-30 w-full h-[80vh] bg-gradient-to-r from-black to-yellow-400 text-white flex items-center"
+      className="relative pt-10 w-full h-[90vh] md:h-[80vh] bg-gradient-to-r from-black to-yellow-400 text-white flex items-center"
       variants={sectionVariants}
       initial="hidden"
       animate="visible"
       transition={{ once: true }}
     >
-      <div className="container mx-auto px-6 flex justify-between items-center">
+      <div className="container mx-auto px-6 flex flex-col-reverse md:flex-row justify-between items-center">
         {/* Left Side: Text */}
-        <motion.div className="w-1/2">
-          <motion.h1 className="text-5xl font-bold mb-4" variants={textVariantsH1}>
+        <motion.div className="w-full md:w-1/2 text-center md:text-left mt-6 md:mt-0">
+          <motion.h1 className="text-4xl md:text-5xl font-bold mb-4" variants={textVariantsH1}>
             <AnimatedText text="Discover the Latest Collections" />
           </motion.h1>
           <AnimatedParagraph
             text="Upgrade your style with innovative designs and premium quality"
             variants={textVariantsP}
-            className="text-xl mb-6"
+            className="text-lg md:text-xl mb-6"
           />
           <motion.button
-            className="px-8 py-3 bg-yellow-500 text-white rounded-full"
+            className="px-6 py-3 bg-yellow-500 text-white rounded-full"
             variants={buttonVariants}
             initial="initial"
             animate="visible"
@@ -150,8 +150,9 @@ export default function Hero() {
             Shop Now
           </motion.button>
         </motion.div>
+
         {/* Right Side: Image */}
-        <motion.div className="w-1/2">
+        <motion.div className="w-full md:w-1/2 flex justify-center md:justify-end mb-6 md:mb-0">
           <motion.div
             variants={imageVariants}
             initial="hidden"
@@ -159,7 +160,7 @@ export default function Hero() {
             transition={{ once: true }}
           >
             <Image
-              className="w-full h-[70vh] object-contain"
+              className="w-[85%] md:w-auto max-w-full h-100 md:h-600 object-contain"
               src="/nike.png"
               alt="Nike Shoe"
               width={500}

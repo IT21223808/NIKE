@@ -3,10 +3,9 @@
 import React, { useState } from "react";
 import { useSubscription } from "../context/subcriptionContext"; // Correct the import path
 import { toast } from "react-toastify";
-import axios from "axios";
 
 export default function MemberSection() {
-  const { subscribe } = useSubscription();  // Destructure the subscribe function from context
+  const { subscribe } = useSubscription();  
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -25,8 +24,7 @@ export default function MemberSection() {
 
     try {
       console.log("Submitting:", { email: trimmedEmail, name: trimmedName });
-      // Here you can integrate an API call or simulate the subscription
-      subscribe(trimmedEmail, trimmedName); // Call the subscribe function from context
+      subscribe(trimmedEmail, trimmedName);
 
       toast.success("Subscription successful!");
       setEmail("");
@@ -41,16 +39,17 @@ export default function MemberSection() {
 
   return (
     <div>
+      {/* Nike Plus Member Section */}
       <section className="py-12 bg-[#7f6609] text-white">
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          <div className="flex items-center">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center lg:justify-between gap-6">
+          <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 lg:gap-6">
             <img
               src="/images.jpg"
               alt="Profile"
-              className="w-12 h-12 rounded-full mr-4"
+              className="w-12 h-12 rounded-full"
               onError={(e) => (e.target.style.display = "none")}
             />
-            <div>
+            <div className="text-center sm:text-left">
               <h2 className="text-2xl font-semibold font-mono mb-2">Nike Plus Member Exclusive</h2>
               <p className="text-sm text-gray-300 mb-2">Special Offer | Limited Time</p>
               <p className="text-lg">Unlock rewards and early access with Nike Plus membership</p>
@@ -64,11 +63,12 @@ export default function MemberSection() {
         </div>
       </section>
 
+      {/* Newsletter Subscription Section */}
       <section className="py-12 bg-white text-black">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between">
-          <div className="lg:w-1/2 mb-8 lg:mb-0">
-            <h3 className="text-3xl font-mono font-bold mb-4">Stay Updated with Nike</h3>
-            <p className="text-lg mb-6">Sign up for our newsletter to receive exclusive offers</p>
+        <div className="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="lg:w-1/2">
+            <h3 className="text-3xl font-mono font-bold mb-4 text-center lg:text-left">Stay Updated with Nike</h3>
+            <p className="text-lg mb-6 text-center lg:text-left">Sign up for our newsletter to receive exclusive offers</p>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
               <div className="flex flex-col sm:flex-row gap-4">
@@ -106,7 +106,7 @@ export default function MemberSection() {
             </form>
           </div>
 
-          <div className="lg:w-1/3">
+          <div className="lg:w-1/3 w-full">
             <img
               src="/img.jpg"
               alt="Nike Apparel"
